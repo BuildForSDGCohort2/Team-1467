@@ -4,7 +4,7 @@ import {Button} from "react-native";
 
 class ProjectsScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    headerShown: false,
   };
   render() {
     return (
