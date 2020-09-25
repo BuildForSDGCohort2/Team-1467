@@ -1,5 +1,5 @@
-import React from 'react';
-import Svg, {G, Path, Defs, ClipPath} from 'react-native-svg';
+import React from "react";
+import Svg, {G, Path, Defs, ClipPath} from "react-native-svg";
 
 export const NotificationIcon = (props) => (
   <Svg height={23.997} width={22} {...props}>

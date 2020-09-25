@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -9,44 +9,49 @@ import {
   Animated,
   Easing,
   StatusBar,
-} from 'react-native';
-import styled from 'styled-components';
-import Card from '../components/Card';
-import {Ionicons} from '@expo/vector-icons';
-import {Icon} from 'expo';
-import {NotificationIcon} from '../components/Icons';
-import Logo from '../components/Logo';
-import Course from '../components/Course';
-import Menu from '../components/Menu';
-import {connect} from 'react-redux';
+} from "react-native";
+import styled from "styled-components";
+import Card from "../components/Card";
+import {Ionicons} from "@expo/vector-icons";
+import {Icon} from "expo";
+import {NotificationIcon} from "../components/Icons";
+import Logo from "../components/Logo";
+import Course from "../components/Course";
+import Menu from "../components/Menu";
+import {connect} from "react-redux";
+import Avatar from "../components/Avatar";
 
 function mapStateToProps(state) {
-  return {action: state.action};
+  return {action: state.action, name: state.name};
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     openMenu: () =>
       dispatch({
-        type: 'OPEN_MENU',
+        type: "OPEN_MENU",
       }),
   };
 }
 
 class HomeScreen extends React.Component {
+  static navigationOptions = {
+    headerShown: false,
+  };
+
   state = {
     scale: new Animated.Value(1),
     opacity: new Animated.Value(1),
   };
 
   componentDidMount() {
-    StatusBar.setBarStyle('dark-content', true);
+    StatusBar.setBarStyle("dark-content", true);
   }
   componentDidUpdate() {
     this.toggleMenu();
   }
   toggleMenu = () => {
-    if (this.props.action == 'openMenu') {
+    if (this.props.action == "openMenu") {
       Animated.timing(this.state.scale, {
         toValue: 0.9,
         duration: 300,
@@ -58,9 +63,9 @@ class HomeScreen extends React.Component {
         useNativeDriver: false,
       }).start();
 
-      StatusBar.setBarStyle('light-content'), true;
+      StatusBar.setBarStyle("light-content"), true;
     }
-    if (this.props.action == 'closeMenu') {
+    if (this.props.action == "closeMenu") {
       Animated.timing(this.state.scale, {
         toValue: 1,
         duration: 300,
@@ -72,7 +77,7 @@ class HomeScreen extends React.Component {
         useNativeDriver: false,
       }).start();
 
-      StatusBar.setBarStyle('dark-content'), true;
+      StatusBar.setBarStyle("dark-content"), true;
     }
   };
 
@@ -91,20 +96,20 @@ class HomeScreen extends React.Component {
               <TitleBar>
                 <TouchableOpacity
                   onPress={this.props.openMenu}
-                  style={{position: 'absolute', top: 0, left: 20}}
+                  style={{position: "absolute", top: 0, left: 20}}
                 >
-                  <Avatar source={require('../assets/avatar.jpg')} />
+                  <Avatar />
                 </TouchableOpacity>
                 <Text>Welcome back</Text>
-                <Name>Sherline</Name>
+                <Name>{this.props.name}</Name>
                 <NotificationIcon
-                  style={{position: 'absolute', right: 20, top: 5}}
+                  style={{position: "absolute", right: 20, top: 5}}
                 />
                 <StatusBar style="auto" />
               </TitleBar>
               <ScrollView
                 style={{
-                  flexDirection: 'row',
+                  flexDirection: "row",
                   padding: 20,
                   paddingLeft: 12,
                   paddingTop: 30,
@@ -123,14 +128,20 @@ class HomeScreen extends React.Component {
                 showsHorizontalScrollIndicator={false}
               >
                 {cards.map((card, index) => (
-                  <Card
+                  <TouchableOpacity
                     key={index}
-                    title={card.title}
-                    image={card.image}
-                    caption={card.caption}
-                    logo={card.logo}
-                    subtitle={card.subtitle}
-                  />
+                    onPress={() => {
+                      this.props.navigation.push("Section");
+                    }}
+                  >
+                    <Card
+                      title={card.title}
+                      image={card.image}
+                      caption={card.caption}
+                      logo={card.logo}
+                      subtitle={card.subtitle}
+                    />
+                  </TouchableOpacity>
                 ))}
               </ScrollView>
               <Subtitle>Popular Courses</Subtitle>
@@ -142,7 +153,6 @@ class HomeScreen extends React.Component {
                   subtitle={course.subtitle}
                   logo={course.logo}
                   author={course.author}
-                  avatar={course.avatar}
                   caption={course.caption}
                 />
               ))}
@@ -165,17 +175,11 @@ const Subtitle = styled.Text`
   text-transform: uppercase;
 `;
 
-const Avatar = styled.Image`
-  width: 44px;
-  height: 44px;
-  background: black;
-  border-radius: 22px;
-`;
-
 const Container = styled.View`
   flex: 1;
   background-color: #f0f3f5;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 `;
 
 const AnimatedContainer = Animated.createAnimatedComponent(Container);
@@ -200,99 +204,99 @@ const TitleBar = styled.View`
 
 const logos = [
   {
-    image: require('../assets/logo-framerx.png'),
-    text: 'Framer X',
+    image: require("../assets/logo-framerx.png"),
+    text: "Framer X",
   },
   {
-    image: require('../assets/logo-figma.png'),
-    text: 'Figma',
+    image: require("../assets/logo-figma.png"),
+    text: "Figma",
   },
   {
-    image: require('../assets/logo-studio.png'),
-    text: 'Studio',
+    image: require("../assets/logo-studio.png"),
+    text: "Studio",
   },
   {
-    image: require('../assets/logo-react.png'),
-    text: 'React',
+    image: require("../assets/logo-react.png"),
+    text: "React",
   },
   {
-    image: require('../assets/logo-swift.png'),
-    text: 'Swift',
+    image: require("../assets/logo-swift.png"),
+    text: "Swift",
   },
   {
-    image: require('../assets/logo-sketch.png'),
-    text: 'Sketch',
+    image: require("../assets/logo-sketch.png"),
+    text: "Sketch",
   },
 ];
 
 const cards = [
   {
-    title: 'React Native For Designers',
-    image: require('../assets/background11.jpg'),
-    subtitle: 'React Native',
-    caption: '1 of 12 sections',
-    logo: require('../assets/logo-react.png'),
+    title: "React Native For Designers",
+    image: require("../assets/background11.jpg"),
+    subtitle: "React Native",
+    caption: "1 of 12 sections",
+    logo: require("../assets/logo-react.png"),
   },
   {
-    title: 'Styled Components',
-    image: require('../assets/background12.jpg'),
-    subtitle: 'React Native',
-    caption: '2 of 12 sections',
-    logo: require('../assets/logo-react.png'),
+    title: "Styled Components",
+    image: require("../assets/background12.jpg"),
+    subtitle: "React Native",
+    caption: "2 of 12 sections",
+    logo: require("../assets/logo-react.png"),
   },
   {
-    title: 'Props and Icons',
-    image: require('../assets/background13.jpg'),
-    subtitle: 'React Native',
-    caption: '3 of 12 sections',
-    logo: require('../assets/logo-react.png'),
+    title: "Props and Icons",
+    image: require("../assets/background13.jpg"),
+    subtitle: "React Native",
+    caption: "3 of 12 sections",
+    logo: require("../assets/logo-react.png"),
   },
   {
-    title: 'Static Data and Loop',
-    image: require('../assets/background14.jpg'),
-    subtitle: 'React Native',
-    caption: '4 of 12 sections',
-    logo: require('../assets/logo-react.png'),
+    title: "Static Data and Loop",
+    image: require("../assets/background14.jpg"),
+    subtitle: "React Native",
+    caption: "4 of 12 sections",
+    logo: require("../assets/logo-react.png"),
   },
 ];
 
 const courses = [
   {
-    title: 'Prototype in InVision Studio',
-    subtitle: '10 sections',
-    image: require('../assets/background13.jpg'),
-    logo: require('../assets/logo-studio.png'),
-    author: 'Sherline',
-    avatar: require('../assets/avatar.jpg'),
-    caption: 'Design and interactive prototype',
+    title: "Prototype in InVision Studio",
+    subtitle: "10 sections",
+    image: require("../assets/background13.jpg"),
+    logo: require("../assets/logo-studio.png"),
+    author: "Sherline",
+    avatar: require("../assets/avatar.jpg"),
+    caption: "Design and interactive prototype",
   },
   {
-    title: 'React for Designers',
-    subtitle: '12 sections',
-    image: require('../assets/background11.jpg'),
-    logo: require('../assets/logo-react.png'),
-    author: 'Sherline',
-    avatar: require('../assets/avatar.jpg'),
-    caption: 'Learn to design and code a React site',
+    title: "React for Designers",
+    subtitle: "12 sections",
+    image: require("../assets/background11.jpg"),
+    logo: require("../assets/logo-react.png"),
+    author: "Sherline",
+    avatar: require("../assets/avatar.jpg"),
+    caption: "Learn to design and code a React site",
   },
   {
-    title: 'Design and Code with Framer X',
-    subtitle: '10 sections',
-    image: require('../assets/background14.jpg'),
-    logo: require('../assets/logo-framerx.png'),
-    author: 'Sherline',
-    avatar: require('../assets/avatar.jpg'),
-    caption: 'Create powerful design and code components for your app',
+    title: "Design and Code with Framer X",
+    subtitle: "10 sections",
+    image: require("../assets/background14.jpg"),
+    logo: require("../assets/logo-framerx.png"),
+    author: "Sherline",
+    avatar: require("../assets/avatar.jpg"),
+    caption: "Create powerful design and code components for your app",
   },
   {
-    title: 'Design System in Figma',
-    subtitle: '10 sections',
-    image: require('../assets/background6.jpg'),
-    logo: require('../assets/logo-figma.png'),
-    author: 'Sherline',
-    avatar: require('../assets/avatar.jpg'),
+    title: "Design System in Figma",
+    subtitle: "10 sections",
+    image: require("../assets/background6.jpg"),
+    logo: require("../assets/logo-figma.png"),
+    author: "Sherline",
+    avatar: require("../assets/avatar.jpg"),
     caption:
-      'Complete guide to designing a site using a collaborative design tool',
+      "Complete guide to designing a site using a collaborative design tool",
   },
 ];
 

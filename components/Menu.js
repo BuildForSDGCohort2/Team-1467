@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import {Animated, TouchableOpacity, Dimensions} from 'react-native';
-import {Ionicons} from '@expo/vector-icons';
-import MenuItem from './MenuItem';
-import {connect} from 'react-redux';
+import React from "react";
+import styled from "styled-components";
+import {Animated, TouchableOpacity, Dimensions} from "react-native";
+import {Ionicons} from "@expo/vector-icons";
+import MenuItem from "./MenuItem";
+import {connect} from "react-redux";
 
 function mapStateToProps(state) {
   return {action: state.action};
@@ -13,12 +13,12 @@ function mapDispatchToProps(dispatch) {
   return {
     closeMenu: () =>
       dispatch({
-        type: 'CLOSE_MENU',
+        type: "CLOSE_MENU",
       }),
   };
 }
 
-const screenHeight = Dimensions.get('window').height;
+const screenHeight = Dimensions.get("window").height;
 
 class Menu extends React.Component {
   state = {
@@ -34,14 +34,14 @@ class Menu extends React.Component {
   }
 
   toggleMenu = () => {
-    if (this.props.action == 'openMenu') {
+    if (this.props.action == "openMenu") {
       Animated.spring(this.state.top, {
         toValue: 54,
         useNativeDriver: false,
       }).start();
     }
 
-    if (this.props.action == 'closeMenu') {
+    if (this.props.action == "closeMenu") {
       Animated.spring(this.state.top, {
         toValue: screenHeight,
         useNativeDriver: false,
@@ -52,16 +52,16 @@ class Menu extends React.Component {
     return (
       <AnimatedContainer style={{top: this.state.top}}>
         <Cover>
-          <Image source={require('../assets/background2.jpg')} />
+          <Image source={require("../assets/background2.jpg")} />
           <Title>Sherline</Title>
           <Subtitle>Developer at Kinder Farms</Subtitle>
         </Cover>
         <TouchableOpacity
           onPress={this.props.closeMenu}
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 120,
-            left: '50%',
+            left: "50%",
             marginLeft: -22,
             zIndex: 1,
           }}
@@ -142,23 +142,23 @@ const Subtitle = styled.Text`
 
 const items = [
   {
-    icon: 'ios-settings',
-    title: 'Account',
-    text: 'settings',
+    icon: "ios-settings",
+    title: "Account",
+    text: "settings",
   },
   {
-    icon: 'ios-card',
-    title: 'Billing',
-    text: 'payments',
+    icon: "ios-card",
+    title: "Billing",
+    text: "payments",
   },
   {
-    icon: 'ios-compass',
-    title: 'Learn React',
-    text: 'start course',
+    icon: "ios-compass",
+    title: "Learn React",
+    text: "start course",
   },
   {
-    icon: 'ios-exit',
-    title: 'Log out',
-    text: 'see you soon!',
+    icon: "ios-exit",
+    title: "Log out",
+    text: "see you soon!",
   },
 ];
