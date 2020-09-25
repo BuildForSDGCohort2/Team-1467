@@ -1,7 +1,7 @@
 import React from "react";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
-import HomeScreen from "./Screens/HomeScreen";
+import HomeScreen from "./screens/HomeScreen";
 import AppNavigator from "./navigator/AppNavigator";
 
 const initialState = {
