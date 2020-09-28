@@ -39,6 +39,7 @@ const CardsQuery = gql`
           width
           height
         }
+        subtitle
         caption
         logo {
           title
@@ -184,6 +185,14 @@ class HomeScreen extends React.Component {
                               logo={{uri: card.logo.url}}
                               subtitle={card.subtitle}
                             />
+
+                            {/* <Card
+      title={card.title}
+      image={{ uri: card.image.url }}
+      caption={card.caption}
+      logo={{ uri: card.logo.url }}
+      subtitle={card.subtitle}
+    /> */}
                           </TouchableOpacity>
                         ))}
                       </CardsContainer>

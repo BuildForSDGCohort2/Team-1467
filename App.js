@@ -1,7 +1,6 @@
 import React from "react";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
-import HomeScreen from "./screens/HomeScreen";
 import AppNavigator from "./navigator/AppNavigator";
 import ApolloClient from "apollo-boost";
 import {ApolloProvider} from "react-apollo";
