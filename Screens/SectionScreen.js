@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import {TouchableOpacity, StatusBar} from "react-native";
+import {TouchableOpacity, StatusBar, Linking, ScrollView} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
+import {WebView} from "react-native-webview";
+import {event} from "react-native-reanimated";
+import Markdown from "react-native-showdown";
 
 class SectionScreen extends React.Component {
   static navigationOptions = {
@@ -22,37 +25,60 @@ class SectionScreen extends React.Component {
     const {navigation} = this.props;
     const section = navigation.getParam("section");
     return (
-      <Container>
-        <StatusBar hidden />
-        <Cover>
-          <Image source={{uri: section.image.url}} />
-          <Wrapper>
-            <Logo source={{uri: section.logo.url}} />
-            <Subtitle>{section.subtitle}</Subtitle>
-          </Wrapper>
-          <Title>{section.title}</Title>
-          <Caption>{section.caption}</Caption>
-        </Cover>
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.goBack();
-          }}
-          style={{
-            position: "absolute",
-            top: 20,
-            right: 20,
-          }}
-        >
-          <CloseView>
-            <Ionicons
-              name="ios-close"
-              size={36}
-              style={{marginTop: -2}}
-              color="#4775f2"
+      <ScrollView>
+        <Container>
+          <StatusBar hidden />
+          <Cover>
+            <Image source={{uri: section.image.url}} />
+            <Wrapper>
+              <Logo source={{uri: section.logo.url}} />
+              <Subtitle>{section.subtitle}</Subtitle>
+            </Wrapper>
+            <Title>{section.title}</Title>
+            <Caption>{section.caption}</Caption>
+          </Cover>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.goBack();
+            }}
+            style={{
+              position: "absolute",
+              top: 20,
+              right: 20,
+            }}
+          >
+            <CloseView>
+              <Ionicons
+                name="ios-close"
+                size={36}
+                style={{marginTop: -2}}
+                color="#4775f2"
+              />
+            </CloseView>
+          </TouchableOpacity>
+          <Content>
+            {/* <WebView
+            source={{html: section.content + htmlStyles}}
+            scalesPageToFit={false}
+            scrollEnabled={false}
+            ref="webview"
+            onNavigationStateChange={(event) => {
+              console.log(event);
+              if (event.url != "about:blank") {
+                this.refs.webview.stopLoading;
+                Linking.openURL(event.url);
+              }
+            }}
+          /> */}
+            <Markdown
+              body={section.content}
+              pureCSS={htmlStyles}
+              scalesPageToFit={false}
+              scrollEnabled={false}
             />
-          </CloseView>
-        </TouchableOpacity>
-      </Container>
+          </Content>
+        </Container>
+      </ScrollView>
     );
   }
 }
@@ -124,3 +150,53 @@ const Subtitle = styled.Text`
   margin-left: 5px;
   text-transform: uppercase;
 `;
+
+const Content = styled.View`
+  height: 1000px;
+  padding: 12px;
+`;
+
+const htmlContent = `
+      <h2>This is a title</h2>
+      <p>This <strong>is</strong> a <a href="http://designcode.io">link</a></p>
+      <img src="https://cl.ly/8861f359ed6d/download/Wave14.jpg" />
+    `;
+
+const htmlStyles = `
+      * {
+        font-family: -apple-system, Roboto;   
+        margin: 0;
+        padding: 0;  
+        font-size: 17px; 
+          font-weight: normal; 
+          color: #3c4560;
+          line-height: 24px;      
+      }
+      img {
+        width: 100%;
+        margin-top: 20px;
+          border-radius: 10px;
+      }      
+        h2 {
+          font-size: 20px;
+          text-transform: uppercase;
+          color: #b8bece;
+          font-weight: 600;
+          margin-top: 50px;
+        }
+      
+          p {
+            margin-top: 20px;
+        }
+      
+        a {
+          color: #4775f2;
+          font-weight: 600;
+          text-decoration: none;
+        }
+      
+        strong {
+          font-weight: 700;
+        }
+      
+    `;
