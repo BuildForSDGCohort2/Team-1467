@@ -7,13 +7,15 @@ class SectionScreen extends React.Component {
   static navigationOptions = {
     headerShown: false,
   };
-
+  isMounted = false;
   componentDidMount() {
     StatusBar.setBarStyle("light-content", true);
+    this.isMounted = true;
   }
 
   componentWillUnmount() {
     StatusBar.setBarStyle("dark-content", true);
+    this.isMounted = true;
   }
 
   render() {
@@ -23,9 +25,9 @@ class SectionScreen extends React.Component {
       <Container>
         <StatusBar hidden />
         <Cover>
-          <Image source={section.image} />
+          <Image source={{uri: section.image.url}} />
           <Wrapper>
-            <Logo source={section.logo} />
+            <Logo source={{uri: section.logo.url}} />
             <Subtitle>{section.subtitle}</Subtitle>
           </Wrapper>
           <Title>{section.title}</Title>
@@ -77,7 +79,7 @@ const Title = styled.Text`
   font-size: 24px;
   color: white;
   font-weight: bold;
-  width: 170px;
+  width: 350px;
   position: absolute;
   top: 78px;
   left: 20px;
