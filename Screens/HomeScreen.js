@@ -9,6 +9,7 @@ import {
   Animated,
   Easing,
   StatusBar,
+  Platform,
 } from "react-native";
 import styled from "styled-components";
 import Card from "../components/Card";
@@ -82,6 +83,7 @@ class HomeScreen extends React.Component {
 
   componentDidMount() {
     StatusBar.setBarStyle("dark-content", true);
+    if (Platform.OS === "android") StatusBar.setBarStyle("light-content", true);
   }
   componentDidUpdate() {
     this.toggleMenu();
@@ -157,7 +159,7 @@ class HomeScreen extends React.Component {
                   <Logo key={index} image={logo.image} text={logo.text} />
                 ))}
               </ScrollView>
-              <Subtitle>Continue Learning</Subtitle>
+              <Subtitle>{"Continue Learning".toUpperCase()}</Subtitle>
               <ScrollView
                 horizontal={true}
                 style={{paddingBottom: 30}}
@@ -209,18 +211,20 @@ class HomeScreen extends React.Component {
                   }}
                 </Query>
               </ScrollView>
-              <Subtitle>Popular Courses</Subtitle>
-              {courses.map((course, index) => (
-                <Course
-                  key={index}
-                  image={course.image}
-                  title={course.title}
-                  subtitle={course.subtitle}
-                  logo={course.logo}
-                  author={course.author}
-                  caption={course.caption}
-                />
-              ))}
+              <Subtitle>{"Popular Courses".toUpperCase()}</Subtitle>
+              <CoursesContainer>
+                {courses.map((course, index) => (
+                  <Course
+                    key={index}
+                    image={course.image}
+                    title={course.title}
+                    subtitle={course.subtitle}
+                    logo={course.logo}
+                    author={course.author}
+                    caption={course.caption}
+                  />
+                ))}
+              </CoursesContainer>
             </ScrollView>
           </SafeAreaView>
         </AnimatedContainer>
@@ -379,4 +383,11 @@ const Message = styled.Text`
 
 const CardsContainer = styled.View`
   flex-direction: row;
+  padding-left: 10px;
+`;
+
+const CoursesContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 10px;
 `;
