@@ -2,6 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import Project from "../components/Project";
 import {PanResponder, Animated} from "react-native";
+import {connect} from "react-redux";
+
+function mapStateToProps(state) {
+  return {
+    action: state.action,
+  };
+}
 
 function getNextIndex(index) {
   var nextIndex = index + 1;
@@ -156,7 +163,7 @@ class ProjectsScreen extends React.Component {
   }
 }
 
-export default ProjectsScreen;
+export default connect(mapStateToProps)(ProjectsScreen);
 
 const Container = styled.View`
   flex: 1;

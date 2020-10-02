@@ -8,6 +8,26 @@ import {
   TouchableOpacity,
 } from "react-native";
 import {Ionicons} from "@expo/vector-icons";
+import {connect} from "react-redux";
+
+function mapStateToProps(state) {
+  return {
+    action: state.action,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    openCard: () =>
+      dispatch({
+        type: "OPEN_CARD",
+      }),
+    closeCard: () =>
+      dispatch({
+        type: "CLOSE_CARD",
+      }),
+  };
+}
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -22,6 +42,8 @@ class Project extends React.Component {
   };
 
   openCard = () => {
+    if (!this.props.canOpen) return;
+
     Animated.spring(this.state.cardWidth, {toValue: screenWidth}).start();
     Animated.spring(this.state.cardHeight, {
       toValue: screenHeight - tabBarHeight,
@@ -30,6 +52,7 @@ class Project extends React.Component {
     Animated.timing(this.state.opacity, {toValue: 1}).start();
 
     StatusBar.setHidden(true);
+    this.props.openCard();
   };
 
   closeCard = () => {
@@ -41,6 +64,7 @@ class Project extends React.Component {
     Animated.timing(this.state.opacity, {toValue: 0}).start();
 
     StatusBar.setHidden(false);
+    this.props.closeCard();
   };
   render() {
     return (
@@ -70,7 +94,7 @@ class Project extends React.Component {
   }
 }
 
-export default Project;
+export default connect(mapStateToProps, mapDispatchToProps)(Project);
 
 const Container = styled.View`
   width: 315px;
