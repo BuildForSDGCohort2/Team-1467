@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import {Ionicons} from "@expo/vector-icons";
+import {LinearGradient} from "expo-linear-gradient";
+// // import {AnimatedLinearGradient} from "react-native-animated-linear-gradient";
 import {connect} from "react-redux";
 
 function mapStateToProps(state) {
@@ -39,6 +41,7 @@ class Project extends React.Component {
     cardHeight: new Animated.Value(460),
     titleTop: new Animated.Value(20),
     opacity: new Animated.Value(0),
+    textHeight: new Animated.Value(100),
   };
 
   openCard = () => {
@@ -50,6 +53,7 @@ class Project extends React.Component {
     }).start();
     Animated.spring(this.state.titleTop, {toValue: 40}).start();
     Animated.timing(this.state.opacity, {toValue: 1}).start();
+    Animated.spring(this.state.textHeight, {toValue: 1000}).start();
 
     StatusBar.setHidden(true);
     this.props.openCard();
@@ -62,10 +66,12 @@ class Project extends React.Component {
     }).start();
     Animated.spring(this.state.titleTop, {toValue: 20}).start();
     Animated.timing(this.state.opacity, {toValue: 0}).start();
+    Animated.spring(this.state.textHeight, {toValue: 100}).start();
 
     StatusBar.setHidden(false);
     this.props.closeCard();
   };
+
   render() {
     return (
       <TouchableWithoutFeedback onPress={this.openCard}>
@@ -77,9 +83,20 @@ class Project extends React.Component {
             <AnimatedTitle style={{top: this.state.titleTop}}>
               {this.props.title}
             </AnimatedTitle>
-            <Author>{this.props.author}</Author>
+            <Author>by {this.props.author}</Author>
           </Cover>
-          <Text>{this.props.text}</Text>
+          <AnimatedText style={{height: this.state.textHeight}}>
+            {this.props.text}
+          </AnimatedText>
+          {/* Animated Linear Gradient, state.textHeight failed to work thus use of Linear Gradient */}
+          <LinearGradient
+            colors={["rgba(255,255,255, 0)", "rgba(255,255,255, 1)"]}
+            style={{
+              position: "absolute",
+              top: 330,
+              width: "100%",
+            }}
+          />
           <TouchableOpacity
             style={{position: "absolute", top: 20, right: 20}}
             onPress={this.closeCard}
@@ -95,6 +112,19 @@ class Project extends React.Component {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Project);
+
+// const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
+
+const CloseView = styled.View`
+  width: 32px;
+  height: 32px;
+  background: white;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const AnimatedCloseView = Animated.createAnimatedComponent(CloseView);
 
 const Container = styled.View`
   width: 315px;
@@ -147,13 +177,4 @@ const Text = styled.Text`
   color: #3c4560;
 `;
 
-const CloseView = styled.View`
-  width: 32px;
-  height: 32px;
-  background: white;
-  border-radius: 16px;
-  justify-content: center;
-  align-items: center;
-`;
-
-const AnimatedCloseView = Animated.createAnimatedComponent(CloseView);
+const AnimatedText = Animated.createAnimatedComponent(Text);

@@ -95,6 +95,7 @@ class ProjectsScreen extends React.Component {
   render() {
     return (
       <Container>
+        <AnimatedMask style={{opacity: this.state.opacity}} />
         <Animated.View
           style={{
             transform: [
@@ -179,7 +180,8 @@ const projects = [
     title: "Price Tag",
     image: require("../assets/background5.jpg"),
     author: "Liu Yi",
-    text: "Thanks to Design+Code ",
+    text:
+      "Thanks to Design+Code. Thanks to Design+Code. Thanks to Design+Code. Thanks to Design+Code. Thanks to Design+Code",
   },
   {
     title: "The DM App - Ananoumous Chat",
@@ -194,3 +196,15 @@ const projects = [
     text: "Recently finished the React course ",
   },
 ];
+
+const Mask = styled.View`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: -3;
+`;
+
+const AnimatedMask = Animated.createAnimatedComponent(Mask);
