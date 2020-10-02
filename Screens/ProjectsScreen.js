@@ -58,7 +58,6 @@ class ProjectsScreen extends React.Component {
       onPanResponderRelease: () => {
         const positionY = this.state.pan.y.__getValue();
         Animated.timing(this.state.opacity, {toValue: 0}).start();
-        // console.log(positionY);
 
         if (positionY > 200) {
           Animated.timing(this.state.pan, {
