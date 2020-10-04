@@ -6,6 +6,8 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+import Success from "./Success";
+import Loading from "../components/Loading";
 // import {BlurView} from "expo-blur";
 
 class ModalLogin extends React.Component {
@@ -14,10 +16,21 @@ class ModalLogin extends React.Component {
     password: "",
     iconEmail: require("../assets/icon-email.png"),
     iconPassword: require("../assets/icon-password.png"),
+    isSuccessful: false,
+    isLoading: false,
   };
 
   handleLogin = () => {
-    console.log(this.state.phone, this.state.password);
+    // console.log(this.state.phone, this.state.password);
+    // Start loading
+    this.setState({isLoading: true});
+
+    // Simulate API Call
+    setTimeout(() => {
+      // Stop loading and show success
+      this.setState({isLoading: false});
+      this.setState({isSuccessful: true});
+    }, 2000);
   };
 
   focusPhone = () => {
@@ -74,6 +87,8 @@ class ModalLogin extends React.Component {
             </ButtonView>
           </TouchableOpacity>
         </Modal>
+        <Success isActive={this.state.isSuccessful} />
+        <Loading isActive={this.state.isLoading} />
       </Container>
     );
   }
