@@ -15,7 +15,11 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "io.kinderfarms.KinderFarmsExpo"
+    },
+    "android": {
+      "package": "io.kinderfarms.KinderFarmsExpo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
