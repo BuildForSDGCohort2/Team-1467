@@ -82,8 +82,8 @@ class Menu extends React.Component {
       <AnimatedContainer style={{top: this.state.top}}>
         <Cover>
           <Image source={require("../assets/background2.jpg")} />
-          <Title>Sherline</Title>
-          <Subtitle>Developer at Kinder Farms</Subtitle>
+          <Title>Farmer</Title>
+          <Subtitle>Kinder Farms</Subtitle>
         </Cover>
         <TouchableOpacity
           onPress={this.props.closeMenu}
@@ -185,7 +185,7 @@ const items = [
   },
   {
     icon: "ios-compass",
-    title: "Learn React",
+    title: "Learn",
     text: "start course",
   },
   {

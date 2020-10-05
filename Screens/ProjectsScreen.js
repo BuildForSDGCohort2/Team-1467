@@ -177,23 +177,25 @@ const Text = styled.Text``;
 
 const projects = [
   {
-    title: "Price Tag",
+    title: "Firms",
     image: require("../assets/background5.jpg"),
-    author: "Liu Yi",
+    author: "CFO, Kinder Farms",
     text:
-      "Thanks to Design+Code. Thanks to Design+Code. Thanks to Design+Code. Thanks to Design+Code. Thanks to Design+Code",
+      "We are working to get partnerships with local and international firms for small scale farmers to get funding in their personal projects as well as sponsorships",
   },
   {
-    title: "The DM App - Ananoumous Chat",
+    title: "Community Chat",
     image: require("../assets/background6.jpg"),
-    author: "Chad Goodman",
-    text: "Design+Code was the first resource ",
+    author: "CEO, Kinder Farms",
+    text:
+      "We will be launching a chat feature where you will be matched to the nearest group of farmers in your location so as to make it easier for updates such as when there's an outbreak, one can have measures. It will also be effective on sharing tips such as what crops are better in the area  ",
   },
   {
-    title: "Nikhiljay",
+    title: "Profit Maximization",
     image: require("../assets/background7.jpg"),
-    author: "Nikhil D'Souza",
-    text: "Recently finished the React course ",
+    author: "CEO, Kinder Farms",
+    text:
+      "By ensuring the produce is fit for human consumption, we will establish a market while working with brokers nearest in your area to save on costs",
   },
 ];
 

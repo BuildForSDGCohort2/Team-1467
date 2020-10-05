@@ -234,7 +234,7 @@ class HomeScreen extends React.Component {
                   }}
                 </Query>
               </ScrollView>
-              <Subtitle>{"Popular Courses".toUpperCase()}</Subtitle>
+              <Subtitle>{"Popular Reads".toUpperCase()}</Subtitle>
               <CoursesContainer>
                 {courses.map((course, index) => (
                   <Course
@@ -298,98 +298,97 @@ const TitleBar = styled.View`
 const logos = [
   {
     image: require("../assets/logo-framerx.png"),
-    text: "Framer X",
+    text: "Oranges",
   },
   {
     image: require("../assets/logo-figma.png"),
-    text: "Figma",
+    text: "Vegetables",
   },
   {
     image: require("../assets/logo-studio.png"),
-    text: "Studio",
+    text: "Mint",
   },
   {
     image: require("../assets/logo-react.png"),
-    text: "React",
+    text: "Mangoes",
   },
   {
     image: require("../assets/logo-swift.png"),
-    text: "Swift",
+    text: "Kiwi",
   },
   {
     image: require("../assets/logo-sketch.png"),
-    text: "Sketch",
+    text: "Bananas",
   },
 ];
 
 const cards = [
   {
-    title: "React Native For Designers",
+    title: "Introduction to crop farming",
     image: require("../assets/background11.jpg"),
     subtitle: "React Native",
     caption: "1 of 12 sections",
-    logo: require("../assets/logo-react.png"),
+    logo: require("../assets/logo.png"),
   },
   {
     title: "Styled Components",
     image: require("../assets/background12.jpg"),
     subtitle: "React Native",
     caption: "2 of 12 sections",
-    logo: require("../assets/logo-react.png"),
+    logo: require("../assets/logo.png"),
   },
   {
     title: "Props and Icons",
     image: require("../assets/background13.jpg"),
     subtitle: "React Native",
     caption: "3 of 12 sections",
-    logo: require("../assets/logo-react.png"),
+    logo: require("../assets/logo.png"),
   },
   {
     title: "Static Data and Loop",
     image: require("../assets/background14.jpg"),
     subtitle: "React Native",
     caption: "4 of 12 sections",
-    logo: require("../assets/logo-react.png"),
+    logo: require("../assets/logo.png"),
   },
 ];
 
 const courses = [
   {
-    title: "Prototype in InVision Studio",
-    subtitle: "10 sections",
+    title: "Potato Planting Guide",
+    subtitle: "4 Sections",
     image: require("../assets/background13.jpg"),
-    logo: require("../assets/logo-studio.png"),
-    author: "Sherline",
+    logo: require("../assets/logo.png"),
+    author: "John",
     avatar: require("../assets/avatar.jpg"),
-    caption: "Design and interactive prototype",
+    caption: "Plant and Harvest plentifully",
   },
   {
-    title: "React for Designers",
-    subtitle: "12 sections",
+    title: "Effectively Growing Seedlings",
+    subtitle: "3 sections",
     image: require("../assets/background11.jpg"),
-    logo: require("../assets/logo-react.png"),
-    author: "Sherline",
+    logo: require("../assets/logo.png"),
+    author: "Harry",
     avatar: require("../assets/avatar.jpg"),
-    caption: "Learn to design and code a React site",
+    caption: "Save space and Grow Seedlings",
   },
   {
-    title: "Design and Code with Framer X",
-    subtitle: "10 sections",
+    title: "Capsicum Farming",
+    subtitle: "5 sections",
     image: require("../assets/background14.jpg"),
-    logo: require("../assets/logo-framerx.png"),
+    logo: require("../assets/logo.png"),
     author: "Sherline",
     avatar: require("../assets/avatar.jpg"),
-    caption: "Create powerful design and code components for your app",
+    caption: "Shielding from the sun and birds",
   },
   {
-    title: "Design System in Figma",
-    subtitle: "10 sections",
+    title: "Sweet Pepper ",
+    subtitle: "7 sections",
     image: require("../assets/background6.jpg"),
-    logo: require("../assets/logo-figma.png"),
+    logo: require("../assets/logo.png"),
     author: "Sherline",
     avatar: require("../assets/avatar.jpg"),
-    caption:
-      "Complete guide to designing a site using a collaborative design tool",
+    caption: "Complete guide to growing peppers",
   },
 ];
 

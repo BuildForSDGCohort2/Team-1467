@@ -42,11 +42,11 @@ HomeStack.navigationOptions = ({navigation}) => {
 };
 
 const CoursesStack = createStackNavigator({
-  Courses: CoursesScreen,
+  Resources: CoursesScreen,
 });
 
 CoursesStack.navigationOptions = {
-  tabBarLabel: "Courses",
+  tabBarLabel: "Resources",
   tabBarIcon: ({focused}) => (
     <Ionicons
       name="ios-albums"

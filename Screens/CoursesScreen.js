@@ -8,7 +8,7 @@ import {Dimensions} from "react-native";
 let screenWidth = Dimensions.get("window").width;
 
 class CoursesScreen extends React.Component {
-  static navigationOptions = {title: "Courses", header: null};
+  static navigationOptions = {title: "Courses", headerShown: false};
 
   render() {
     return (
@@ -20,9 +20,9 @@ class CoursesScreen extends React.Component {
               colors={["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.5)"]}
               style={{position: "absolute", width: screenWidth, height: 460}}
             />
-            <Logo source={require("../assets/logo-react.png")} />
-            <Caption>12 Sections</Caption>
-            <Title>React Native for Designers</Title>
+            <Logo source={require("../assets/icon.png")} />
+            <Caption>5 Groups Near You</Caption>
+            <Title>Feel free to share your insights</Title>
             <Sections>
               <SectionScrollView
                 horizontal={true}
@@ -43,7 +43,7 @@ class CoursesScreen extends React.Component {
               <Name>Kinder Farms</Name>
             </Author>
           </Hero>
-          <Subtitle>Latest Courses</Subtitle>
+          <Subtitle>Latest Articles</Subtitle>
           <Courses />
         </ScrollView>
       </Container>
@@ -87,7 +87,7 @@ const Caption = styled.Text`
   font-size: 15px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #b8bece;
+  color: #f9f3d1;
   margin-top: 20px;
   margin-left: 20px;
 `;
