@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {Ionicons} from "@expo/vector-icons";
 import {Video} from "expo-av";
+import {WebView} from "react-native-webview";
 // import {Video} from "expo";
 import {TouchableOpacity, Dimensions} from "react-native";
 
@@ -10,16 +11,15 @@ let screenHeight = Dimensions.get("window").height;
 
 class VideoScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    headerShown: false,
   };
 
   render() {
     return (
       <Container>
-        <Video
+        <WebView
           source={{
-            uri:
-              "https://player.vimeo.com/external/281472837.hd.mp4?s=c78b611b5055e373c69b6dd7674e2051128bc7b8&profile_id=175",
+            uri: "https://youtu.be/3Ww2TP_tU7o/",
           }}
           shouldPlay
           useNativeControls={true}

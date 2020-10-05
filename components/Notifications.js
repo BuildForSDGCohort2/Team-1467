@@ -215,30 +215,27 @@ const Text = styled.Text`
 
 const items = [
   {
-    logo: "https://cl.ly/a4d00a918f39/download/logo-vue.png",
-    title: "Vue.js for Designers",
-    text:
-      "Make a dashboard web-app with a complete login system, dark mode, and animated charts for your data.",
-    date: "23 Jan",
+    logo: "../assets/logo.png",
+    title: "Requirements ",
+    text: "Effectively use space and costs",
+    date: "23 Aug",
   },
   {
-    logo: "https://cl.ly/5c470805a500/download/logo-invision.png",
-    title: "InVision Studio",
-    text:
-      "Learn how to prototype interactions directly in the design tool in this 10-section course.",
-    date: "27 Nov",
+    logo: "../assets/logo.png",
+    title: "The Farmers Market",
+    text: "What is the farmers market?",
+    date: "26 Sep",
   },
   {
-    logo: "https://cl.ly/cc8368bef551/download/logo-framerx.png",
-    title: "Framer X",
-    text: "Create production-ready React components right in the design tool.",
-    date: "26 SEP",
+    logo: "../assets/logo.png",
+    title: "Lemons or limes?",
+    text: "What soil is compatible?",
+    date: "29 Sep",
   },
   {
-    logo: "https://cl.ly/c01bb29804bd/download/logo-figma.png",
-    title: "Design System",
-    text:
-      "Complete guide to designing a site using a collaborative and powerful design system.",
+    logo: "../assets/logo.png",
+    title: "Utilizing Space",
+    text: "Grow produce with creative minimal spaces",
     date: "4 SEP",
   },
 ];
