@@ -4,5 +4,5 @@
 
 
 
-# Team-1467
-https://expo.io/@/kinder-farms
+# Try the app here!
+https://expo.io/@sherlinekinyanjui/projects/kinder-farms
