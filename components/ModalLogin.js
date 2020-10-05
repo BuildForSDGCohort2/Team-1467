@@ -11,6 +11,7 @@ import Loading from "../components/Loading";
 import {Alert, Animated, Dimensions} from "react-native";
 import {connect} from "react-redux";
 import {BlurView} from "expo-blur";
+import firebase from "./Firebase";
 
 const screenHeight = Dimensions.get("window").height;
 
@@ -29,7 +30,7 @@ function mapDispatchToProps(dispatch) {
 
 class ModalLogin extends React.Component {
   state = {
-    phone: "",
+    email: "",
     password: "",
     iconEmail: require("../assets/icon-email.png"),
     iconPassword: require("../assets/icon-password.png"),
@@ -72,26 +73,55 @@ class ModalLogin extends React.Component {
     }
   }
 
+  // Simulate API Call
+  // setTimeout(() => {
+  //   // Stop loading and show success
+  //   this.setState({isLoading: false});
+  //   this.setState({isSuccessful: true});
+  //   Alert.alert("Congrats!", "You've successfully logged in");
+
+  //   setTimeout(() => {
+  //     this.props.closeLogin();
+  //     this.setState({isSuccessful: false});
+  //   }, 1000);
+  // }, 2000);
+
+  // const phone = this.state.phone;
+  // const password = this.state.password;
+
   handleLogin = () => {
     // console.log(this.state.phone, this.state.password);
-    // Start loading
     this.setState({isLoading: true});
 
-    // Simulate API Call
-    setTimeout(() => {
-      // Stop loading and show success
-      this.setState({isLoading: false});
-      this.setState({isSuccessful: true});
-      Alert.alert("Congrats!", "You've successfully logged in");
+    const email = this.state.email;
+    const password = this.state.password;
 
-      setTimeout(() => {
-        this.props.closeLogin();
-        this.setState({isSuccessful: false});
-      }, 1000);
-    }, 2000);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(function (error) {
+        // Error message
+        Alert.alert("Error", error.message);
+      })
+      .then((response) => {
+        this.setState({isLoading: false});
+
+        if (response) {
+          // Successful
+          this.setState({isSuccessful: true});
+          setTimeout(() => {
+            Alert.alert("Congrats", "You've successfully logged in!");
+            Keyboard.dismiss();
+            this.props.closeLogin();
+            this.setState({isSuccessful: false});
+          }, 1000);
+
+          // console.log(response.user);
+        }
+      });
   };
 
-  focusPhone = () => {
+  focusEmail = () => {
     this.setState({
       iconEmail: require("../assets/icon-email-animated.gif"),
       iconPassword: require("../assets/icon-password.png"),
@@ -132,11 +162,11 @@ class ModalLogin extends React.Component {
           <Text>Start Learning. Access Pro Content.</Text>
 
           <TextInput
-            onChangeText={(phone) => this.setState({phone})}
-            placeholder="Phone Number"
-            value={this.state.phone}
-            keyboardType="phone-pad"
-            onFocus={this.focusPhone}
+            onChangeText={(email) => this.setState({email})}
+            placeholder="Email Address"
+            value={this.state.email}
+            keyboardType="email-address"
+            onFocus={this.focusEmail}
           />
           <TextInput
             onChangeText={(password) => this.setState({password})}
