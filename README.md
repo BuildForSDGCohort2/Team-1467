@@ -5,4 +5,5 @@
 
 
 # Try the app here!
+Scan the Code using the expo app: (download expo https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en_US)
 https://expo.io/@sherlinekinyanjui/projects/kinder-farms
